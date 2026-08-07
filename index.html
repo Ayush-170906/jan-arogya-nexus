@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Jan Arogya Portal - Government of India</title>
+
+  <!-- Tailwind CDN with plugins - per approved design -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts per approved design -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles (ticker + dropdown) -->
+  <link href="./src/styles/custom.css" rel="stylesheet" />
+
+  <!-- Tailwind theme config - matches approved landing page -->
+  <script src="./src/styles/tailwind-config.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+  <!--
+    Jan Arogya Portal - Initial Landing Page
+    Pure frontend structure only - no backend, login logic, routing, or API calls.
+    Login actions are placeholders per task scope.
+
+    Component breakdown (reusable):
+    - <government-header> : Official GoI header
+    - <top-navbar> : Primary nav with ecosystem role login dropdown
+    - <announcement-ticker> : Latest updates ticker
+    - <main-section> : Centered official identity section
+    - <site-footer> : Government footer
+  -->
+
+  <government-header></government-header>
+  <top-navbar></top-navbar>
+  <announcement-ticker></announcement-ticker>
+  <main-section></main-section>
+  <site-footer></site-footer>
+
+  <!-- App entry - registers components (ES modules, no build required) -->
+  <script type="module" src="./src/js/app.js"></script>
+</body>
+</html>
