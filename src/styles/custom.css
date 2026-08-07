@@ -1,0 +1,27 @@
+/* Custom styles for Jan Arogya Portal landing page */
+
+/* Announcement ticker animation */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker {
+  display: inline-block;
+  animation: ticker 20s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Login dropdown - show on hover and focus */
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-container:hover .dropdown-menu,
+.dropdown-container:focus-within .dropdown-menu {
+  display: block;
+}
