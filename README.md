@@ -13,6 +13,8 @@ frontend/          # Frontend application (static, no build required)
       mock/        # Isolated prototype data (not persistence)
     styles/        # Custom CSS and Tailwind theme config
 docs/              # Project and engineering documentation
+  backend/         # Backend team handbook: vision, contracts, data model, checklists
+  engineering/     # Brief, charter, and implementation logs
 ```
 
 ## Routing
@@ -40,3 +42,10 @@ as today's implementation. It is deliberately not part of `js/auth/`, which
 authenticates the signed-in professional. Patient records — the single source
 behind the Profile, the Dashboard's admissions and patient state — are
 `src/js/mock/patients.js`. See `docs/engineering/patient-identity-implementation-log.md`.
+
+## Backend team
+
+There is no backend yet. The backend handbook — product vision, the contracts
+the frontend expects, the data model, ABDM integration guidance, and the
+step-by-step tie-in procedure — lives in [`docs/backend/`](docs/backend/).
+Start at [`docs/backend/README.md`](docs/backend/README.md).
