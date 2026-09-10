@@ -33,14 +33,29 @@ export function workspacePathFor(roleKey, section = "dashboard") {
 }
 
 /**
- * Turns a location hash into a route descriptor:
- *   "" / "#/"                       -> { name: "public" }
- *   "#/login/doctor"                -> { name: "login", role: "doctor" }
- *   "#/dashboard/doctor"            -> { name: "dashboard", role: "doctor", section: "dashboard" }
- *   "#/dashboard/doctor/patients"   -> { name: "dashboard", role: "doctor", section: "patients" }
- *   anything else                   -> { name: "unknown" }
+ * Doctor patient context.
  *
- * Role validity is intentionally not decided here.
+ * The `patient` segment occupies the workspace's section slot, and the record id
+ * follows it. The id is the internal record id and deliberately not the ABHA: a
+ * patient identifier does not belong in URLs, history entries or shared
+ * screenshots when an opaque id resolves just as well.
+ */
+export function patientPathFor(roleKey, patientId) {
+  return `${workspacePathFor(roleKey, "patient")}/${patientId}`;
+}
+
+/**
+ * Turns a location hash into a route descriptor:
+ *   "" / "#/"                         -> { name: "public" }
+ *   "#/login/doctor"                  -> { name: "login", role: "doctor" }
+ *   "#/dashboard/doctor"              -> { name: "dashboard", role: "doctor", section: "dashboard" }
+ *   "#/dashboard/doctor/patients"     -> { name: "dashboard", role: "doctor", section: "patients" }
+ *   "#/dashboard/doctor/patient/p-01" -> { name: "dashboard", role: "doctor", section: "patient", patientId: "p-01" }
+ *   anything else                     -> { name: "unknown" }
+ *
+ * Role validity is intentionally not decided here, and neither is whether a
+ * patient id exists: resolving it belongs to the app, so an unknown id can be
+ * reported instead of rendering someone else's record.
  */
 export function parseRoute(hash) {
   const segments = String(hash || "")
@@ -54,6 +69,17 @@ export function parseRoute(hash) {
 
   if (segments.length === 2 && segments[0] === "login") {
     return { name: "login", role: segments[1] };
+  }
+
+  // Read before the section rule, so a fourth segment is only ever accepted as a
+  // patient id and every other four-part path still falls back to the landing.
+  if (segments.length === 4 && segments[0] === "dashboard" && segments[2] === "patient") {
+    return {
+      name: "dashboard",
+      role: segments[1],
+      section: "patient",
+      patientId: segments[3],
+    };
   }
 
   if (segments.length >= 2 && segments.length <= 3 && segments[0] === "dashboard") {

@@ -35,10 +35,15 @@
     - <role-dashboard> : signed-in destination placeholder for non-doctor roles
     - <doctor-workspace> : doctor clinical shell (#/dashboard/doctor[/<section>])
 
+    Doctor clinical views (mounted inside <doctor-workspace>, not in the body):
+    - <patient-intake>  : New Patient workflow - ABHA, then one-time password
+    - <patient-profile> : the identified patient's clinical summary
+
     #public-view groups the two public-only sections so routing can swap the
     landing content for the dashboard while the header, navigation and footer
     stay in place. No backend, database or ABDM integration exists yet;
-    authentication is a mock service (src/js/auth/).
+    authentication is a mock service (src/js/auth/) and so is patient identity
+    (src/js/abdm/).
   -->
 
   <government-header></government-header>
