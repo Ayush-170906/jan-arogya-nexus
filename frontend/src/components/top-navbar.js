@@ -48,6 +48,10 @@ class TopNavbar extends HTMLElement {
   }
 
   render() {
+    const session = readSession();
+    const publicNavClass = session ? "hidden" : "hidden md:flex";
+    const mobileToggleClass = session ? "hidden" : "md:hidden p-2 text-on-surface-variant";
+
     this.innerHTML = `
       <nav class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked full-width top-0 z-50">
         <div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
@@ -55,8 +59,8 @@ class TopNavbar extends HTMLElement {
             Jan Arogya Portal
           </a>
 
-          <!-- Desktop Nav Links -->
-          <div class="hidden md:flex gap-8 items-center h-full">
+          <!-- Desktop Nav Links (public landing only; clinical workspace has its own shell) -->
+          <div class="${publicNavClass} gap-8 items-center h-full">
             <a class="text-primary dark:text-inverse-primary border-b-2 border-secondary font-bold pb-1 h-full flex items-center hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors px-2" href="#/">
               <span class="font-label-md text-label-md">Home</span>
             </a>
@@ -86,7 +90,7 @@ class TopNavbar extends HTMLElement {
           </div>
 
           <!-- Mobile Menu Toggle (visible only on mobile) -->
-          <button class="md:hidden p-2 text-on-surface-variant" aria-label="Open menu">
+          <button class="${mobileToggleClass}" aria-label="Open menu">
             <span class="material-symbols-outlined">menu</span>
           </button>
         </div>
