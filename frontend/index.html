@@ -32,7 +32,8 @@
     Login views added for this milestone:
     - <login-modal> : role-specific authentication panel, shown over the public
       page (#/login/<role>)
-    - <role-dashboard> : signed-in destination placeholder (#/dashboard/<role>)
+    - <role-dashboard> : signed-in destination placeholder for non-doctor roles
+    - <doctor-workspace> : doctor clinical shell (#/dashboard/doctor[/<section>])
 
     #public-view groups the two public-only sections so routing can swap the
     landing content for the dashboard while the header, navigation and footer
@@ -49,6 +50,7 @@
   </div>
 
   <role-dashboard hidden></role-dashboard>
+  <doctor-workspace hidden></doctor-workspace>
 
   <site-footer></site-footer>
 

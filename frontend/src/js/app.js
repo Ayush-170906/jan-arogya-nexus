@@ -17,8 +17,9 @@ import "../components/main-section.js";
 import "../components/site-footer.js";
 import "../components/login-modal.js";
 import "../components/role-dashboard.js";
+import "../components/doctor-workspace.js";
 
-import { getRole } from "./roles.js";
+import { getRole, ROLE } from "./roles.js";
 import {
   dashboardPathFor,
   loginPathFor,
@@ -31,6 +32,7 @@ import { clearSession, readSession, writeSession } from "./auth/session.js";
 const publicView = document.getElementById("public-view");
 const loginModal = document.querySelector("login-modal");
 const dashboard = document.querySelector("role-dashboard");
+const doctorWorkspace = document.querySelector("doctor-workspace");
 
 /** Lets chrome (the navbar) react to a sign-in or sign-out. */
 function announceSessionChange() {
@@ -39,12 +41,21 @@ function announceSessionChange() {
 
 function showLanding() {
   dashboard.hide();
+  doctorWorkspace.hide();
   publicView.hidden = false;
 }
 
-function showDashboard(roleKey, session) {
+function showDashboard(roleKey, session, section) {
   loginModal.close();
   publicView.hidden = true;
+
+  if (roleKey === ROLE.DOCTOR) {
+    dashboard.hide();
+    doctorWorkspace.show(session, section);
+    return;
+  }
+
+  doctorWorkspace.hide();
   dashboard.show(roleKey, session);
 }
 
@@ -59,6 +70,7 @@ function applyRoute(route) {
 
   if (route.name === "login" && definition) {
     dashboard.hide();
+    doctorWorkspace.hide();
     publicView.hidden = false;
     loginModal.openFor(route.role);
     return;
@@ -74,7 +86,7 @@ function applyRoute(route) {
       return;
     }
 
-    showDashboard(route.role, session);
+    showDashboard(route.role, session, route.section);
     return;
   }
 

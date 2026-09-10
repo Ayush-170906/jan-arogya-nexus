@@ -24,12 +24,21 @@ export function dashboardPathFor(roleKey) {
   return `#/dashboard/${roleKey}`;
 }
 
+/** Doctor workspace destinations. `dashboard` is the login landing (no extra segment). */
+export function workspacePathFor(roleKey, section = "dashboard") {
+  if (!section || section === "dashboard") {
+    return dashboardPathFor(roleKey);
+  }
+  return `#/dashboard/${roleKey}/${section}`;
+}
+
 /**
  * Turns a location hash into a route descriptor:
- *   "" / "#/"                  -> { name: "public" }
- *   "#/login/doctor"           -> { name: "login", role: "doctor" }
- *   "#/dashboard/doctor"       -> { name: "dashboard", role: "doctor" }
- *   anything else              -> { name: "unknown" }
+ *   "" / "#/"                       -> { name: "public" }
+ *   "#/login/doctor"                -> { name: "login", role: "doctor" }
+ *   "#/dashboard/doctor"            -> { name: "dashboard", role: "doctor", section: "dashboard" }
+ *   "#/dashboard/doctor/patients"   -> { name: "dashboard", role: "doctor", section: "patients" }
+ *   anything else                   -> { name: "unknown" }
  *
  * Role validity is intentionally not decided here.
  */
@@ -43,8 +52,16 @@ export function parseRoute(hash) {
     return { name: "public" };
   }
 
-  if (segments.length === 2 && (segments[0] === "login" || segments[0] === "dashboard")) {
-    return { name: segments[0], role: segments[1] };
+  if (segments.length === 2 && segments[0] === "login") {
+    return { name: "login", role: segments[1] };
+  }
+
+  if (segments.length >= 2 && segments.length <= 3 && segments[0] === "dashboard") {
+    return {
+      name: "dashboard",
+      role: segments[1],
+      section: segments[2] || "dashboard",
+    };
   }
 
   return { name: "unknown" };

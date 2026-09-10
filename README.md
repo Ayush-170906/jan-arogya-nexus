@@ -9,6 +9,7 @@ frontend/          # Frontend application (static, no build required)
     components/    # Reusable custom elements
     js/            # App entry, role registry, hash router, auth service
       auth/        # Authentication seam: service interface + mock + session
+      mock/        # Isolated prototype data (not persistence)
     styles/        # Custom CSS and Tailwind theme config
 docs/              # Project and engineering documentation
 ```
@@ -21,7 +22,8 @@ The frontend uses hash routes so it stays a static, no-build application:
 | --- | --- |
 | `#/` | Public landing page |
 | `#/login/<role>` | Role-specific login over the landing page |
-| `#/dashboard/<role>` | Signed-in destination placeholder |
+| `#/dashboard/<role>` | Signed-in destination (doctor workspace, other roles placeholder) |
+| `#/dashboard/doctor/<section>` | Doctor workspace: `patients`, `history`, `admissions`, `new-patient` |
 
 Roles: `patient`, `doctor`, `hospital`, `pharmacy`, `laboratory`, `government`
 (defined once in `src/js/roles.js`).
