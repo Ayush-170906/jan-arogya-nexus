@@ -1,12 +1,16 @@
 /**
  * App entry
  *
- * Two responsibilities, and no more:
+ * Three responsibilities, and no more:
  *   1. Register the reusable components that make up the page.
  *   2. Own the wiring between routes, the login modal, the session and the
  *      dashboard, which is the only place allowed to decide what a route shows.
+ *   3. Resolve what a route is *about* - today, the patient record a patient
+ *      route names - and hand it down. Components are shown their data; they do
+ *      not go and find it.
  *
  * Authentication itself is not here (it is behind src/js/auth/auth-service.js),
+ * patient identification is not here either (src/js/abdm/identity-service.js),
  * and no component contains a credential check or builds a URL by hand.
  */
 
@@ -18,16 +22,21 @@ import "../components/site-footer.js";
 import "../components/login-modal.js";
 import "../components/role-dashboard.js";
 import "../components/doctor-workspace.js";
+import "../components/patient-intake.js";
+import "../components/patient-profile.js";
 
 import { getRole, ROLE } from "./roles.js";
 import {
   dashboardPathFor,
   loginPathFor,
   navigate,
+  patientPathFor,
   publicPath,
   startRouter,
+  workspacePathFor,
 } from "./router.js";
 import { clearSession, readSession, writeSession } from "./auth/session.js";
+import { getPatientById } from "./mock/patients.js";
 
 const publicView = document.getElementById("public-view");
 const loginModal = document.querySelector("login-modal");
@@ -45,13 +54,13 @@ function showLanding() {
   publicView.hidden = false;
 }
 
-function showDashboard(roleKey, session, section) {
+function showDashboard(roleKey, session, section, patient) {
   loginModal.close();
   publicView.hidden = true;
 
   if (roleKey === ROLE.DOCTOR) {
     dashboard.hide();
-    doctorWorkspace.show(session, section);
+    doctorWorkspace.show(session, section, patient);
     return;
   }
 
@@ -86,7 +95,15 @@ function applyRoute(route) {
       return;
     }
 
-    showDashboard(route.role, session, route.section);
+    // Patient context is resolved here, once, from the route. Components never
+    // look a patient up themselves, so a stale URL reports "not available"
+    // instead of leaving the previous patient on screen.
+    if (route.section === "patient" && route.role === ROLE.DOCTOR && !route.patientId) {
+      navigate(workspacePathFor(route.role), { replace: true });
+      return;
+    }
+
+    showDashboard(route.role, session, route.section, getPatientById(route.patientId));
     return;
   }
 
@@ -106,6 +123,13 @@ loginModal.addEventListener("jap:authenticated", (event) => {
 
 loginModal.addEventListener("jap:cancel", () => {
   navigate(publicPath());
+});
+
+// The intake panel reports a successful verification. Entering patient context is
+// navigation, so it stays here rather than in the panel - the panel never builds
+// a path, exactly like the login modal.
+document.addEventListener("jap:patient-identified", (event) => {
+  navigate(patientPathFor(ROLE.DOCTOR, event.detail.patientId));
 });
 
 window.addEventListener("jap:sign-out", () => {

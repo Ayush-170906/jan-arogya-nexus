@@ -4,6 +4,13 @@
 - **Task:** Doctor Workspace shell + Dashboard only
 - **Status:** Complete for this milestone
 
+> **Superseded in two places** by `patient-identity-implementation-log.md`
+> (same date): `js/mock/active-admissions.js` has been deleted — Dashboard
+> admissions are now derived from `js/mock/patients.js`, so the table shows the
+> one patient actually in a bed rather than four rows — and
+> `#/dashboard/doctor/new-patient` is the real ABHA → OTP flow rather than a
+> placeholder. Everything else here still describes the code.
+
 ## Done
 
 - Login still lands on `#/dashboard/doctor`. Doctor role now renders `<doctor-workspace>` instead of the generic placeholder.
