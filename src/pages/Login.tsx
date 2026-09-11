@@ -6,6 +6,7 @@ import { usersAll } from "@/data/store";
 import { ROLE_LABEL } from "@/auth/roles";
 import { Wordmark } from "@/components/Wordmark";
 import { Button, Input, Field, Avatar, Badge } from "@/components/ui/primitives";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const PERSONA_ORDER = ["u-aroha", "u-farah", "u-nmc-admin", "u-amit", "u-lab", "u-pharm", "u-super"];
 
@@ -33,9 +34,12 @@ export default function Login() {
     <div className="grid min-h-screen bg-canvas lg:grid-cols-[1.05fr_1fr]">
       {/* Brand panel */}
       <div className="hidden flex-col justify-between border-r border-line p-12 lg:flex">
-        <Link to="/">
-          <Wordmark />
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link to="/">
+            <Wordmark />
+          </Link>
+          <ThemeToggle />
+        </div>
         <div className="max-w-sm">
           <h1 className="text-[26px] font-semibold leading-tight tracking-tight text-zinc-100">
             One patient. One authorised view. Every access on the record.
@@ -61,9 +65,12 @@ export default function Login() {
       {/* Form panel */}
       <div className="flex flex-col justify-center px-6 py-12 sm:px-12">
         <div className="mx-auto w-full max-w-sm">
-          <Link to="/" className="mb-8 inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-200 lg:hidden">
-            <ArrowLeft className="h-4 w-4" /> Back
-          </Link>
+          <div className="mb-8 flex items-center justify-between lg:hidden">
+            <Link to="/" className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500 hover:text-zinc-200">
+              <ArrowLeft className="h-4 w-4" /> Back
+            </Link>
+            <ThemeToggle />
+          </div>
           <h2 className="text-xl font-semibold tracking-tight text-zinc-100">Sign in to your workspace</h2>
           <p className="mt-1.5 text-[13px] text-zinc-500">
             {mode === "demo"
