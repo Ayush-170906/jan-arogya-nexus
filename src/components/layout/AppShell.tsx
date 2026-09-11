@@ -9,6 +9,7 @@ import { Avatar, Badge, Button } from "@/components/ui/primitives";
 import { NotificationsMenu } from "./NotificationsMenu";
 import { GlobalSearch } from "./GlobalSearch";
 import { Wordmark } from "@/components/Wordmark";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function AppShell() {
   const { user, org, signOut, signInAs, mode } = useAuth();
@@ -106,6 +107,7 @@ export function AppShell() {
             </kbd>
           </button>
           <div className="ml-auto flex items-center gap-1.5">
+            <ThemeToggle />
             <NotificationsMenu />
             <div className="mx-1.5 hidden h-7 w-px bg-line sm:block" />
             <div className="hidden items-center gap-2.5 pl-1 sm:flex">

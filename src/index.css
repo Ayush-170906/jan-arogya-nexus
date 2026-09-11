@@ -10,6 +10,24 @@
 html, body, #root { height: 100%; }
 html { background: var(--canvas); }
 
+/*
+ * Light mode.
+ *
+ * The product is designed dark-first, so light mode is produced with a single
+ * reversible filter on the document root rather than a second token set:
+ * invert(1) flips every lightness value (near-black canvas -> near-white,
+ * near-white text -> near-black); hue-rotate(180deg) cancels the hue shift
+ * invert() introduces, so the teal/amber/rose/emerald accents land back close
+ * to their original hues instead of drifting to their complements. Toggled by
+ * src/components/ThemeToggle.tsx, persisted via src/lib/theme.ts.
+ */
+html[data-theme="light"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+html[data-theme="light"] body {
+  background: var(--canvas);
+}
+
 body {
   @apply bg-canvas text-zinc-100 font-sans antialiased;
   font-feature-settings: "cv05", "cv08", "ss01";

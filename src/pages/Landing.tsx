@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { Wordmark, NexusMark } from "@/components/Wordmark";
 import { Button } from "@/components/ui/primitives";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV = [
   { label: "Product", href: "#product" },
@@ -52,6 +53,7 @@ export default function Landing() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            <ThemeToggle className="grid h-9 w-9 place-items-center rounded-lg text-zinc-400 hover:bg-white/[0.06] hover:text-zinc-100" />
             <Link to="/login" className="hidden sm:block">
               <Button variant="ghost" size="sm">Sign in</Button>
             </Link>
