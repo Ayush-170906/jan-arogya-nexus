@@ -28,13 +28,13 @@ export function NewPrescriptionModal({ open, onClose, patient }: { open: boolean
   }
 
   return (
-    <Modal open={open} onClose={onClose} title={`New prescription — ${patient.name}`} size="lg"
+    <Modal open={open} onClose={onClose} title={`New prescription: ${patient.name}`} size="lg"
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={submit} disabled={!valid}>Issue prescription</Button></>}>
       <div className="space-y-4">
         {patient.allergies.length > 0 && (
           <div className={`rounded-lg px-3 py-2 text-[12px] ring-1 ring-inset ${allergyHit ? "bg-rose-500/10 text-rose-400 ring-rose-500/25" : "bg-amber-500/10 text-amber-300 ring-amber-500/25"}`}>
             Allergies on record: {patient.allergies.map((a) => a.substance).join(", ")}
-            {allergyHit && <strong> — “{allergyHit.name}” may conflict. Review before issuing.</strong>}
+            {allergyHit && <strong> “{allergyHit.name}” may conflict. Review before issuing.</strong>}
           </div>
         )}
         <div className="space-y-3">
@@ -83,7 +83,7 @@ export function OrderLabModal({ open, onClose, patient }: { open: boolean; onClo
   }
 
   return (
-    <Modal open={open} onClose={onClose} title={`Order investigation — ${patient.name}`}
+    <Modal open={open} onClose={onClose} title={`Order investigation: ${patient.name}`}
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={submit} disabled={!test.trim() || !perf}>Send order</Button></>}>
       <div className="space-y-4">
         <Field label="Test"><Input placeholder="e.g. Serum creatinine" value={test} onChange={(e) => setTest(e.target.value)} /></Field>
@@ -131,7 +131,7 @@ export function NewTaskModal({ open, onClose, patient }: { open: boolean; onClos
   }
 
   return (
-    <Modal open={open} onClose={onClose} title={`New care task — ${patient.name}`} size="lg"
+    <Modal open={open} onClose={onClose} title={`New care task: ${patient.name}`} size="lg"
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={submit} disabled={!title.trim() || !assigneeOrgId}>Create task</Button></>}>
       <div className="space-y-4">
         <Field label="Title"><Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Repeat renal function in 2 weeks" /></Field>
@@ -179,7 +179,7 @@ export function AddNoteModal({ open, onClose, patient }: { open: boolean; onClos
     onClose();
   }
   return (
-    <Modal open={open} onClose={onClose} title={`Add clinical note — ${patient.name}`}
+    <Modal open={open} onClose={onClose} title={`Add clinical note: ${patient.name}`}
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={submit} disabled={!text.trim()}>Save note</Button></>}>
       <Field label="Note"><Textarea rows={4} value={text} onChange={(e) => setText(e.target.value)} placeholder="Observation, plan, or handover detail…" /></Field>
     </Modal>

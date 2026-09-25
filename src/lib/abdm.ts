@@ -1,5 +1,5 @@
 /**
- * ABDM / ABHA identity — MOCK.
+ * ABDM / ABHA identity: MOCK.
  *
  * This module simulates the shape of an ABHA verification + OTP exchange so the
  * identity workflow can be demonstrated. It performs NO network calls and is not

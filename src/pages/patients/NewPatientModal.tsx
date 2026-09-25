@@ -74,7 +74,7 @@ export function NewPatientModal({ open, onClose, onCreated }: { open: boolean; o
       open={open}
       onClose={() => { reset(); onClose(); }}
       title="Register a new patient"
-      description="Identity is anchored to an ABHA number. This is a simulated ABDM flow — no government system is contacted."
+      description="Identity is anchored to an ABHA number. This is a simulated ABDM flow; no government system is contacted."
       size="md"
       footer={
         step === "identify" ? (
@@ -126,7 +126,7 @@ export function NewPatientModal({ open, onClose, onCreated }: { open: boolean; o
       {step === "confirm" && lookup && (
         <div className="space-y-4">
           <div className="flex items-center gap-2 rounded-lg bg-emerald-500/10 px-3 py-2 text-[13px] text-emerald-300 ring-1 ring-inset ring-emerald-500/25">
-            <ShieldCheck className="h-4 w-4" /> ABHA verified — {lookup.abhaNumber}
+            <ShieldCheck className="h-4 w-4" /> ABHA verified: {lookup.abhaNumber}
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Mobile"><Input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="98xxx xxxxx" /></Field>

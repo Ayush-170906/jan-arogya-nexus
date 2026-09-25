@@ -15,7 +15,7 @@ const NAV = [
 ];
 
 const STEPS = [
-  { icon: Fingerprint, k: "01", title: "Identity", body: "An ABHA-linked identity anchors every record to one verified person — not a dozen local MRNs." },
+  { icon: Fingerprint, k: "01", title: "Identity", body: "An ABHA-linked identity anchors every record to one verified person, not a dozen local MRNs." },
   { icon: ShieldCheck, k: "02", title: "Consent", body: "The patient decides who sees what, why, and for how long. Nothing opens without an active grant." },
   { icon: Layers, k: "03", title: "Clinical context", body: "Authorised records from every facility are assembled into one reviewed view, not a document hunt." },
   { icon: Network, k: "04", title: "Coordination", body: "Lab orders, referrals and follow-ups move between organisations as tracked, accountable tasks." },
@@ -31,9 +31,9 @@ const TEAMS = [
 
 const PRODUCT = [
   { title: "Clinical context", body: "Problems, allergies, medications, encounters, labs and prescriptions from separate systems, reconciled into a single screen with a clear information hierarchy." },
-  { title: "Consent", body: "A control surface, not a form. Who, what, why, for how long — with pending, approved, expired and revoked states enforced end to end." },
+  { title: "Consent", body: "A control surface, not a form: who, what, why, and for how long, with pending, approved, expired and revoked states enforced end to end." },
   { title: "Care coordination", body: "Cross-organisation tasks with owner, priority, source and destination, moving from pending to complete without a phone call." },
-  { title: "Auditability", body: "An append-only event stream of every sensitive access — blocked attempts included — exportable for review." },
+  { title: "Auditability", body: "An append-only event stream of every sensitive access, including blocked attempts, exportable for review." },
 ];
 
 export default function Landing() {
@@ -77,7 +77,7 @@ export default function Landing() {
             <p className="mt-4 text-[14.5px] leading-relaxed text-zinc-400">
               A patient's history is scattered across hospitals, labs and pharmacies that don't share systems.
               Jan Arogya Nexus assembles the <span className="text-zinc-200">authorised</span> parts of that history
-              into one clinical view, and records every access — so the patient stays in control.
+              into one clinical view, and records every access, so the patient stays in control.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Link to="/login">
@@ -147,7 +147,7 @@ export default function Landing() {
       <section id="product" className="border-b border-line">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <h2 className="text-[22px] font-semibold tracking-tight">Four surfaces, one product</h2>
-          <p className="mt-2 max-w-xl text-[13px] text-zinc-500">Each is functional in the demo — not a screenshot.</p>
+          <p className="mt-2 max-w-xl text-[13px] text-zinc-500">Each one is functional in the demo, not a screenshot.</p>
           <div className="mt-8 grid border border-line sm:grid-cols-2 sm:divide-x sm:divide-line [&>*]:border-b [&>*]:border-line sm:[&>*:nth-last-child(-n+2)]:border-b-0">
             {PRODUCT.map((p) => (
               <div key={p.title} className="p-6">
@@ -172,10 +172,9 @@ export default function Landing() {
                     <Icon className="h-4 w-4 text-zinc-400" />
                     <p className="text-[13.5px] font-semibold">{a.title}</p>
                   </div>
-                  <ul className="mt-3 space-y-2">
+                  <ul className="mt-3 list-disc space-y-1.5 pl-4 marker:text-zinc-600">
                     {a.points.map((pt) => (
-                      <li key={pt} className="flex gap-2 text-[12.5px] leading-snug text-zinc-400">
-                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" />
+                      <li key={pt} className="text-[12.5px] leading-snug text-zinc-400">
                         {pt}
                       </li>
                     ))}
@@ -197,14 +196,14 @@ export default function Landing() {
           </p>
           <p className="mt-4 max-w-2xl text-[13px] text-zinc-500">
             The prototype instruments context-assembly time, records unified, navigation steps, blocked unauthorised
-            attempts and consent enforcement — so the question can be studied with real interaction data. It does not
+            attempts and consent enforcement, so the question can be studied with real interaction data. It does not
             claim results that have not been measured.
           </p>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-zinc-500">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-zinc-500">
             {["Context assembly time", "Records unified", "Navigation steps", "Blocked access attempts", "Consent enforcement", "Task completion time"].map((m) => (
-              <span key={m}>— {m}</span>
+              <li key={m}>{m}</li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -226,7 +225,7 @@ export default function Landing() {
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-[12px] text-zinc-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <div className="flex items-center gap-2">
             <NexusMark className="h-5 w-5" />
-            <span>Jan Arogya Nexus — Consent-Aware Continuity of Care</span>
+            <span>Jan Arogya Nexus · Consent-Aware Continuity of Care</span>
           </div>
           <p className="max-w-md sm:text-right">
             Prototype for the Avishkar Engineering &amp; Technology competition. Synthetic data only. No government
@@ -238,15 +237,12 @@ export default function Landing() {
   );
 }
 
-/* One real product surface — the authorised clinical context view. */
+/* One real product surface: the authorised clinical context view. */
 function ProductVisual() {
   return (
     <div className="overflow-hidden rounded-lg border border-line bg-surface">
-      <div className="flex items-center gap-2 border-b border-line px-4 py-2.5">
-        <span className="h-2 w-2 rounded-full bg-zinc-700" />
-        <span className="h-2 w-2 rounded-full bg-zinc-700" />
-        <span className="h-2 w-2 rounded-full bg-zinc-700" />
-        <span className="ml-2 text-[11px] text-zinc-600">Patient · clinical context</span>
+      <div className="border-b border-line px-4 py-2.5">
+        <span className="text-[11px] font-medium uppercase tracking-wide text-zinc-500">Patient · clinical context</span>
       </div>
 
       <div className="p-4">

@@ -77,7 +77,7 @@ export default function PatientProfile() {
         resourceId: patient.id,
         patientId: patient.id,
         status: "blocked",
-        detail: `Access denied — ${consentLabel(access.reason)}. No clinical data returned.`,
+        detail: `Access denied: ${consentLabel(access.reason)}. No clinical data returned.`,
       });
     }
   }, [user, patient, access?.reason]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -218,7 +218,7 @@ export default function PatientProfile() {
           <div>
             <p className="text-[13px] font-semibold text-rose-300">Allergies</p>
             <p className="text-[13px] text-rose-400">
-              {patient.allergies.map((a) => `${a.substance} — ${a.reaction}${a.severity ? ` (${a.severity})` : ""}`).join(" · ")}
+              {patient.allergies.map((a) => `${a.substance}: ${a.reaction}${a.severity ? ` (${a.severity})` : ""}`).join(" · ")}
             </p>
           </div>
         </div>
@@ -393,7 +393,7 @@ export default function PatientProfile() {
                       {r.items.map((it, i) => (
                         <li key={i} className="py-1.5 text-[13px]">
                           <span className="font-medium text-zinc-100">{it.name}</span>
-                          <span className="text-zinc-400"> — {it.dosage}, {it.frequency}{it.duration ? `, ${it.duration}` : ""}</span>
+                          <span className="text-zinc-400">: {it.dosage}, {it.frequency}{it.duration ? `, ${it.duration}` : ""}</span>
                           {it.instructions && <span className="block text-[11px] text-zinc-500">{it.instructions}</span>}
                         </li>
                       ))}

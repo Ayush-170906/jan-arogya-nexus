@@ -92,7 +92,7 @@ export default function DoctorDashboard() {
                           </Link>
                           <Badge tone={e.setting === "Emergency" ? "critical" : "neutral"}>{e.setting}</Badge>
                         </div>
-                        <p className="mt-0.5 text-[12.5px] text-zinc-400">{e.reason} — {e.assessment}</p>
+                        <p className="mt-0.5 text-[12.5px] text-zinc-400">{e.reason}. {e.assessment}</p>
                         <p className="mt-1 text-[11px] text-zinc-500">{fmtDate(e.date)} · {e.clinicianName} · {e.facilityName}</p>
                       </div>
                     </li>

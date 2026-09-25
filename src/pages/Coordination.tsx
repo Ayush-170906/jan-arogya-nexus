@@ -39,7 +39,7 @@ export default function Coordination() {
     <div>
       <PageHeader
         title="Care coordination"
-        description="Tasks that move between organizations — lab orders, referrals and follow-ups — tracked from request to completion."
+        description="Tasks that move between organizations (lab orders, referrals and follow-ups), tracked from request to completion."
         actions={canCreate && <Button icon={<Plus className="h-4 w-4" />} onClick={() => setPickOpen(true)}>New task</Button>}
       />
 

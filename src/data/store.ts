@@ -45,7 +45,7 @@ function persist(next: Database) {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify(next));
   } catch {
-    /* storage may be unavailable (private mode) — app still works in memory */
+    /* storage may be unavailable in private mode; app still works in memory */
   }
 }
 
@@ -177,19 +177,19 @@ export function patientTimeline(patientId: string): TimelineEvent[] {
   const b = patientBundle(patientId);
   const ev: TimelineEvent[] = [];
   b.encounters.forEach((e) =>
-    ev.push({ id: e.id, date: e.date, type: "encounter", title: `${e.setting} encounter — ${e.reason}`, provider: `${e.clinicianName} · ${e.facilityName}`, summary: e.assessment, status: e.disposition, tone: e.setting === "Emergency" ? "critical" : "neutral" }),
+    ev.push({ id: e.id, date: e.date, type: "encounter", title: `${e.setting} encounter: ${e.reason}`, provider: `${e.clinicianName} · ${e.facilityName}`, summary: e.assessment, status: e.disposition, tone: e.setting === "Emergency" ? "critical" : "neutral" }),
   );
   b.prescriptions.forEach((r) =>
-    ev.push({ id: r.id, date: r.issuedOn, type: "prescription", title: `Prescription — ${r.items.length} item${r.items.length > 1 ? "s" : ""}`, provider: r.prescriberName, summary: r.items.map((i) => i.name).join(", "), status: r.status.replace(/_/g, " "), tone: "neutral" }),
+    ev.push({ id: r.id, date: r.issuedOn, type: "prescription", title: `Prescription: ${r.items.length} item${r.items.length > 1 ? "s" : ""}`, provider: r.prescriberName, summary: r.items.map((i) => i.name).join(", "), status: r.status.replace(/_/g, " "), tone: "neutral" }),
   );
   b.labOrders.forEach((l) =>
-    ev.push({ id: l.id, date: l.resultedOn || l.collectedOn || l.orderedOn, type: "lab", title: `Lab — ${l.test}`, provider: `${l.orderedByName} → ${orgById(l.performingOrgId)?.name ?? "Lab"}`, summary: l.status === "resulted" ? `${l.resultValue ?? ""} ${l.unit ?? ""} (${l.resultSummary ?? "resulted"})` : `Status: ${l.status.replace(/_/g, " ")}`, status: l.status.replace(/_/g, " "), tone: l.abnormal ? "warning" : l.status === "resulted" ? "positive" : "neutral" }),
+    ev.push({ id: l.id, date: l.resultedOn || l.collectedOn || l.orderedOn, type: "lab", title: `Lab: ${l.test}`, provider: `${l.orderedByName} to ${orgById(l.performingOrgId)?.name ?? "Lab"}`, summary: l.status === "resulted" ? `${l.resultValue ?? ""} ${l.unit ?? ""} (${l.resultSummary ?? "resulted"})` : `Status: ${l.status.replace(/_/g, " ")}`, status: l.status.replace(/_/g, " "), tone: l.abnormal ? "warning" : l.status === "resulted" ? "positive" : "neutral" }),
   );
   b.diagnoses.forEach((d) =>
-    ev.push({ id: d.id, date: d.date, type: "diagnosis", title: `Diagnosis — ${d.label}`, provider: d.clinicianName, summary: d.code ? `ICD-10 ${d.code}` : "Clinical diagnosis", status: d.status, tone: d.status === "active" ? "warning" : "neutral" }),
+    ev.push({ id: d.id, date: d.date, type: "diagnosis", title: `Diagnosis: ${d.label}`, provider: d.clinicianName, summary: d.code ? `ICD-10 ${d.code}` : "Clinical diagnosis", status: d.status, tone: d.status === "active" ? "warning" : "neutral" }),
   );
   b.consents.forEach((c) =>
-    ev.push({ id: c.id, date: c.decidedOn || c.requestedOn, type: "consent", title: `Consent ${c.status} — ${orgById(c.requestingOrgId)?.name ?? "Org"}`, provider: c.requestingUserName, summary: c.purpose, status: c.status, tone: c.status === "approved" ? "positive" : c.status === "denied" || c.status === "revoked" ? "critical" : "neutral" }),
+    ev.push({ id: c.id, date: c.decidedOn || c.requestedOn, type: "consent", title: `Consent ${c.status}: ${orgById(c.requestingOrgId)?.name ?? "Org"}`, provider: c.requestingUserName, summary: c.purpose, status: c.status, tone: c.status === "approved" ? "positive" : c.status === "denied" || c.status === "revoked" ? "critical" : "neutral" }),
   );
   return ev.sort((a, b) => b.date.localeCompare(a.date));
 }
@@ -319,7 +319,7 @@ export function createTask(actor: User, input: Omit<CareTask, "id" | "createdOn"
   commit((d) => d.careTasks.unshift(t));
   audit(actor, { action: "care.task.create", resourceType: "CareTask", resourceId: t.id, patientId: t.patientId, status: "success", detail: t.title });
   const assigneeOrg = orgById(t.assigneeOrgId);
-  pushNotification({ audienceOrgId: t.assigneeOrgId, audienceRole: t.assigneeRole, title: "New care task assigned", body: `${t.title} — for ${patientById(t.patientId)?.name} (${assigneeOrg?.name}).`, kind: "task", href: "/app/coordination" });
+  pushNotification({ audienceOrgId: t.assigneeOrgId, audienceRole: t.assigneeRole, title: "New care task assigned", body: `${t.title}, for ${patientById(t.patientId)?.name} (${assigneeOrg?.name}).`, kind: "task", href: "/app/coordination" });
   return t;
 }
 
@@ -372,7 +372,7 @@ export function updateLabOrder(actor: User, id: string, patch: Partial<Pick<LabO
     if (patch.status === "resulted") x.resultedOn = now();
   });
   const verb = patch.status === "resulted" ? "lab.result.upload" : "lab.order.update";
-  audit(actor, { action: verb, resourceType: "LabOrder", resourceId: id, patientId: l.patientId, status: "success", detail: patch.status === "resulted" ? `${patch.resultValue ?? ""} ${patch.unit ?? ""} — ${patch.resultSummary ?? "resulted"}` : `Status → ${patch.status}` });
+  audit(actor, { action: verb, resourceType: "LabOrder", resourceId: id, patientId: l.patientId, status: "success", detail: patch.status === "resulted" ? `${patch.resultValue ?? ""} ${patch.unit ?? ""}: ${patch.resultSummary ?? "resulted"}` : `Status now ${patch.status}` });
   if (patch.status === "resulted")
     pushNotification({ audienceOrgId: l.orderedByOrgId, audienceRole: "DOCTOR", title: "Lab result available", body: `${l.test} for ${patientById(l.patientId)?.name}: ${patch.resultValue ?? ""} ${patch.unit ?? ""}.`, kind: "lab", href: `/app/patients/${l.patientId}` });
 }

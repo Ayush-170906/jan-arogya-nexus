@@ -47,7 +47,7 @@ export default function Login() {
           <ul className="mt-9 space-y-5 text-[13px] text-zinc-400">
             <li className="flex gap-3">
               <ShieldCheck className="h-5 w-5 shrink-0 text-brand-500" />
-              Consent decides what opens — pending, approved, expired or revoked, enforced everywhere.
+              Consent decides what opens: pending, approved, expired or revoked, enforced everywhere.
             </li>
             <li className="flex gap-3">
               <Layers className="h-5 w-5 shrink-0 text-brand-500" />
@@ -74,7 +74,7 @@ export default function Login() {
           <h2 className="text-xl font-semibold tracking-tight text-zinc-100">Sign in to your workspace</h2>
           <p className="mt-1.5 text-[13px] text-zinc-500">
             {mode === "demo"
-              ? "Demo environment — choose a persona below, or use any seeded email. Password is not checked."
+              ? "Demo environment: choose a persona below, or use any seeded email. Password is not checked."
               : "Enter the email and password for your Supabase account."}
           </p>
 

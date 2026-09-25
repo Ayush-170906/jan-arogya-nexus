@@ -29,7 +29,7 @@ export default function PatientDashboard() {
     <div>
       <PageHeader
         title={`Your health overview`}
-        description={<>Everything recorded about you across the network — and who has looked at it. <SampleTag /></>}
+        description={<>Everything recorded about you across the network, and who has looked at it. <SampleTag /></>}
       />
 
       <div className="grid gap-4 grid-cols-2 xl:grid-cols-4">

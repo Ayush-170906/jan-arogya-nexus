@@ -85,7 +85,7 @@ export default function PatientList() {
                 },
                 { key: "abha", header: "ABHA", render: (p) => <span className="tabular text-[12.5px]">{p.abha.number}<br /><span className="text-zinc-500">{p.abha.address}</span></span> },
                 { key: "org", header: "Home facility", render: (p) => orgById(p.orgId)?.name ?? "—" },
-                { key: "cond", header: "Key conditions", render: (p) => !p.access.allowed ? <span className="text-zinc-500">Sealed — consent required</span> : p.chronicConditions.length ? p.chronicConditions.slice(0, 2).join(", ") : <span className="text-zinc-500">None recorded</span> },
+                { key: "cond", header: "Key conditions", render: (p) => !p.access.allowed ? <span className="text-zinc-500">Sealed, consent required</span> : p.chronicConditions.length ? p.chronicConditions.slice(0, 2).join(", ") : <span className="text-zinc-500">None recorded</span> },
                 { key: "reg", header: "Registered", render: (p) => fmtDate(p.registeredOn) },
                 { key: "access", header: "Access", align: "right", render: (p) => <ConsentPill decision={p.access} /> },
               ]}

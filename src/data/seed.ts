@@ -156,7 +156,7 @@ const encounters: Encounter[] = [
 const prescriptions: Prescription[] = [
   { id: "rx-5001", patientId: "p-01", encounterId: "enc-1041", orgId: "org-nmc", issuedOn: daysAgo(3), prescriberId: "u-vikram", prescriberName: "Dr. Vikram Nair", status: "partially_dispensed", dispensedByOrgId: "org-medplus", dispensedByName: "MedPlus Community Pharmacy", dispensedOn: daysAgo(2),
     items: [
-      { name: "Cefpodoxime", dosage: "200 mg", frequency: "Twice daily", duration: "7 days", instructions: "After food. Cephalosporin — chosen because of penicillin allergy." },
+      { name: "Cefpodoxime", dosage: "200 mg", frequency: "Twice daily", duration: "7 days", instructions: "After food. Cephalosporin, chosen because of penicillin allergy." },
       { name: "Paracetamol", dosage: "650 mg", frequency: "Up to three times daily", duration: "3 days", instructions: "When temperature above 38 C" },
       { name: "Metformin", dosage: "500 mg", frequency: "Twice daily", duration: "Continue", instructions: "Existing medicine, continue" },
     ] },

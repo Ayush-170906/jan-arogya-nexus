@@ -1,5 +1,5 @@
 /**
- * Supabase client — created only when both public env vars are present.
+ * Supabase client, created only when both public env vars are present.
  *
  * The app is designed to run fully without Supabase (DEMO MODE, see src/data).
  * When VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are provided, this exposes a

@@ -116,7 +116,7 @@ function ResultModal({ order, onClose, onSave }: { order: LabOrder; onClose: () 
   const [summary, setSummary] = useState("");
   const [abnormal, setAbnormal] = useState(false);
   return (
-    <Modal open onClose={onClose} title={`Result — ${order.test}`} description={`Patient: ${patientById(order.patientId)?.name}`}
+    <Modal open onClose={onClose} title={`Result: ${order.test}`} description={`Patient: ${patientById(order.patientId)?.name}`}
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={() => onSave({ resultValue: value, unit, referenceRange: ref, resultSummary: summary, abnormal })} disabled={!value.trim()}>Release result</Button></>}>
       <div className="space-y-3">
         <div className="grid grid-cols-2 gap-3">

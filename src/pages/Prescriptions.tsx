@@ -73,7 +73,7 @@ export default function Prescriptions() {
                   {r.items.map((it, i) => (
                     <li key={i} className="px-3 py-2 text-[13px]">
                       <span className="font-medium text-zinc-100">{it.name}</span>
-                      <span className="text-zinc-400"> — {it.dosage}, {it.frequency}{it.duration ? `, ${it.duration}` : ""}</span>
+                      <span className="text-zinc-400">: {it.dosage}, {it.frequency}{it.duration ? `, ${it.duration}` : ""}</span>
                       {it.instructions && <span className="block text-[11px] text-zinc-500">{it.instructions}</span>}
                     </li>
                   ))}

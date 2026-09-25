@@ -2,7 +2,7 @@
  * Dual-mode (dark / light) toggle.
  *
  * The app is designed dark-first. Rather than re-deriving every color token,
- * light mode is produced with a single reversible filter on <html> — the same
+ * light mode is produced with a single reversible filter on <html>, the same
  * technique used by most "quick invert" dark-mode bookmarklets, run in reverse.
  * `invert(1)` flips every lightness value (near-black canvas -> near-white,
  * near-white text -> near-black); the paired `hue-rotate(180deg)` cancels the

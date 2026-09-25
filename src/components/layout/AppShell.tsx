@@ -150,14 +150,13 @@ function SideLink({ to, end, label, icon: Icon }: { to: string; end?: boolean; l
       end={end}
       className={({ isActive }) =>
         cn(
-          "group relative flex items-center gap-3 rounded-lg px-3 py-2 text-[13.5px] font-medium transition-colors",
-          isActive ? "bg-white/[0.05] text-zinc-100" : "text-zinc-400 hover:bg-white/[0.03] hover:text-zinc-200",
+          "group flex items-center gap-3 rounded-lg px-3 py-2 text-[13.5px] font-medium transition-colors",
+          isActive ? "bg-white/[0.07] text-zinc-100" : "text-zinc-400 hover:bg-white/[0.03] hover:text-zinc-200",
         )
       }
     >
       {({ isActive }) => (
         <>
-          {isActive && <span className="absolute left-0 bottom-1.5 top-1.5 w-0.5 bg-brand-500" />}
           <Icon className={cn("h-[17px] w-[17px] shrink-0", isActive ? "text-brand-400" : "text-zinc-500 group-hover:text-zinc-400")} />
           {label}
         </>

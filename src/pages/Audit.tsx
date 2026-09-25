@@ -64,7 +64,7 @@ export default function Audit() {
         title={patientView ? "Who accessed my data" : "Audit trail"}
         description={
           patientView
-            ? "Every time someone opened or acted on your record — with the authority they used."
+            ? "Every time someone opened or acted on your record, with the authority they used."
             : "An append-only event stream of every sensitive access and action in your scope."
         }
         actions={

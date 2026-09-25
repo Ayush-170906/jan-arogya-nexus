@@ -75,7 +75,7 @@ export default function Analytics() {
 
       <p className="mt-6 rounded-xl border border-line bg-white/[0.03] p-4 text-[12px] text-zinc-400">
         These figures are measured from interactions in this browser session against synthetic data. They demonstrate
-        the metrics the platform can capture for a controlled study — they are not experimental results.
+        the metrics the platform can capture for a controlled study. They are not experimental results.
       </p>
     </div>
   );

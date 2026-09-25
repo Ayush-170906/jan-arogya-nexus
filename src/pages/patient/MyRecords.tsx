@@ -29,13 +29,13 @@ export default function MyRecords() {
             </div>
             <div>
               <p className="mb-1 font-medium text-zinc-400">Allergies</p>
-              {p.allergies.length ? p.allergies.map((a) => <Badge key={a.substance} tone="critical" className="mr-1.5 mb-1.5">{a.substance} — {a.reaction}</Badge>) : <span className="text-zinc-500">None recorded</span>}
+              {p.allergies.length ? p.allergies.map((a) => <Badge key={a.substance} tone="critical" className="mr-1.5 mb-1.5">{a.substance}: {a.reaction}</Badge>) : <span className="text-zinc-500">None recorded</span>}
             </div>
             <div>
               <p className="mb-1 font-medium text-zinc-400">Current medications</p>
               <ul className="space-y-1.5">
                 {p.currentMedications.map((m) => (
-                  <li key={m.name} className="flex items-center gap-2"><Pill className="h-3.5 w-3.5 text-zinc-500" /> {m.name} — {m.dosage}, {m.frequency}</li>
+                  <li key={m.name} className="flex items-center gap-2"><Pill className="h-3.5 w-3.5 text-zinc-500" /> {m.name}, {m.dosage}, {m.frequency}</li>
                 ))}
                 {p.currentMedications.length === 0 && <li className="text-zinc-500">None</li>}
               </ul>
@@ -90,7 +90,7 @@ export default function MyRecords() {
                 <span className="ml-auto text-[11px] text-zinc-500">{r.prescriberName} · {orgById(r.orgId)?.name}</span>
               </div>
               <ul className="mt-2 space-y-1 text-[13px]">
-                {r.items.map((it, i) => <li key={i}><span className="font-medium text-zinc-100">{it.name}</span> <span className="text-zinc-400">— {it.dosage}, {it.frequency}</span></li>)}
+                {r.items.map((it, i) => <li key={i}><span className="font-medium text-zinc-100">{it.name}:</span> <span className="text-zinc-400">{it.dosage}, {it.frequency}</span></li>)}
               </ul>
             </div>
           ))}
