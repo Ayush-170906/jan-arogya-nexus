@@ -222,15 +222,21 @@ export default function Landing() {
 
       {/* Footer */}
       <footer>
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-[12px] text-zinc-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <div className="flex items-center gap-2">
-            <NexusMark className="h-5 w-5" />
-            <span>Jan Arogya Nexus · Consent-Aware Continuity of Care</span>
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 text-[12px] text-zinc-600 sm:px-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2">
+              <NexusMark className="h-5 w-5" />
+              <span>Jan Arogya Nexus · Consent-Aware Continuity of Care</span>
+            </div>
+            <p className="max-w-md sm:text-right">
+              Prototype for the Avishkar Engineering &amp; Technology competition. Synthetic data only. No government
+              affiliation. Not a certified ABDM / DPDP / HIPAA implementation.
+            </p>
           </div>
-          <p className="max-w-md sm:text-right">
-            Prototype for the Avishkar Engineering &amp; Technology competition. Synthetic data only. No government
-            affiliation. Not a certified ABDM / DPDP / HIPAA implementation.
-          </p>
+          <div className="flex gap-5 border-t border-line pt-4">
+            <Link to="/privacy" className="hover:text-zinc-400">Privacy</Link>
+            <Link to="/terms" className="hover:text-zinc-400">Terms</Link>
+          </div>
         </div>
       </footer>
     </div>

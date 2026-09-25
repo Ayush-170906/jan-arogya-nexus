@@ -3,11 +3,11 @@ import { cn } from "@/lib/cn";
 export function NexusMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={cn("h-7 w-7", className)} aria-hidden>
-      <rect x="1" y="1" width="30" height="30" rx="8" fill="#0b0b0d" stroke="#2dd4bf" strokeOpacity="0.5" strokeWidth="1.5" />
+      <rect x="1" y="1" width="30" height="30" rx="8" fill="#0b0b0d" stroke="#f5d742" strokeOpacity="0.5" strokeWidth="1.5" />
       <path
         d="M7 16h3.4l2.1-6 3.4 12 2.1-6H25"
         fill="none"
-        stroke="#2dd4bf"
+        stroke="#f5d742"
         strokeWidth="2.1"
         strokeLinecap="round"
         strokeLinejoin="round"

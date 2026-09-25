@@ -5,6 +5,8 @@ import { AppShell } from "@/components/layout/AppShell";
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
+import Privacy from "@/pages/legal/Privacy";
+import Terms from "@/pages/legal/Terms";
 
 import Dashboard from "@/pages/dashboards/Dashboard";
 import PatientList from "@/pages/patients/PatientList";
@@ -27,6 +29,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
 
       <Route
         path="/app"

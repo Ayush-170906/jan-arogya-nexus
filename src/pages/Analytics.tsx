@@ -18,7 +18,7 @@ export default function Analytics() {
   const s = platformStats();
 
   const consentMix = [
-    { label: "Approved", value: db.consents.filter((c) => c.status === "approved").length, color: "#2dd4bf" },
+    { label: "Approved", value: db.consents.filter((c) => c.status === "approved").length, color: "#f5d742" },
     { label: "Pending", value: db.consents.filter((c) => c.status === "pending").length, color: "#fbbf24" },
     { label: "Denied", value: db.consents.filter((c) => c.status === "denied").length, color: "#fb7185" },
     { label: "Expired", value: db.consents.filter((c) => c.status === "expired").length, color: "#71717a" },

@@ -26,10 +26,10 @@ export default function AdminDashboard() {
   const taskByStatus = [
     { label: "Pending", value: tasks.filter((t) => t.status === "pending").length, color: "#fbbf24" },
     { label: "In progress", value: tasks.filter((t) => t.status === "in_progress").length, color: "#38bdf8" },
-    { label: "Completed", value: tasks.filter((t) => t.status === "completed").length, color: "#2dd4bf" },
+    { label: "Completed", value: tasks.filter((t) => t.status === "completed").length, color: "#f5d742" },
   ];
   const consentMix = [
-    { label: "Approved", value: consents.filter((c) => c.status === "approved").length, color: "#2dd4bf" },
+    { label: "Approved", value: consents.filter((c) => c.status === "approved").length, color: "#f5d742" },
     { label: "Pending", value: consents.filter((c) => c.status === "pending").length, color: "#fbbf24" },
     { label: "Denied / revoked", value: consents.filter((c) => c.status === "denied" || c.status === "revoked").length, color: "#fb7185" },
     { label: "Expired", value: consents.filter((c) => c.status === "expired").length, color: "#71717a" },

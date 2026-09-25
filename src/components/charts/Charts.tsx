@@ -1,9 +1,9 @@
 /** Small dependency-free SVG charts, tuned for a dark clinical interface. */
 import { cn } from "@/lib/cn";
 
-const BAR = { brand: "#2dd4bf", amber: "#fbbf24", rose: "#fb7185", sky: "#38bdf8" };
+const BAR = { brand: "#f5d742", amber: "#fbbf24", rose: "#fb7185", sky: "#38bdf8" };
 
-export function Sparkline({ data, className, stroke = "#2dd4bf" }: { data: number[]; className?: string; stroke?: string }) {
+export function Sparkline({ data, className, stroke = "#f5d742" }: { data: number[]; className?: string; stroke?: string }) {
   if (data.length < 2) return <div className={cn("h-10", className)} />;
   const w = 120;
   const h = 40;
